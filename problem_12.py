@@ -19,21 +19,23 @@
 ## What is the value of the first triangle number to have over five hundred divisors?
 
 def solve ():
-    tri_num, count, divisors = 0, 1, 0
-    while divisors != 100:
-        divisors = 0
-        tri_num = tri_num + count
-        for i in range(1, tri_num):
-            if tri_num == 1:
-                break
-            elif tri_num % i == 0:
-##                print(str(tri_num) +  ' ' + str(i))
+    tri_num, i =  0, 20
+
+    while True:
+        divisors = 1
+        tri_num =  int(i * (i + 1) / 2)
+        for k in range(1, tri_num):
+            if tri_num % k == 0:
                 divisors += 1
 
-        count += 1
-##        print('tri_num: ' + str(tri_num) + ' count: ' + str(count) + ' divisors: ' + str(divisors))
 
-
+        if divisors >= 500:
+            print(tri_num)
+            break
+        else:
+            i += 1
+    
+    
         
     print('Triangle Number: ' + str(tri_num) + ' Divisors: ' + str(divisors))
 

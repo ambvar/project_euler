@@ -47,7 +47,6 @@ def solve():
     [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
     [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
 
-
     diag_right_prod = 0
     diag_left_prod = 0
     left_right = 0
@@ -55,25 +54,30 @@ def solve():
     high = 0
     best = 0
     
-    for row in range(3, len(grid) - 3):
-        for col in range(3, len(grid[row]) - 3):
+    for row in range(3, len(grid)):
+        for col in range(3, len(grid[row])):
             diag_right_prod = grid[row - 3][col - 3] * grid[row - 2][col - 2] * grid[row - 1][col - 1] * grid[row][col]
-            diag_left_prod = grid[row + 3][col + 3] * grid[row + 2][col + 2] * grid[row + 1][col + 1] * grid[row][col]
             left_right = grid[row - 3][col - 3] * grid[row - 3][col - 2] * grid[row - 3][col - 1] * grid[row - 3][col]
             up_down = grid[row - 3][col - 3] * grid[row - 2][col - 3] * grid[row - 1][col - 3] * grid[row][col - 3]
 
-            if diag_right_prod > diag_left_prod and diag_right_prod > left_right and diag_right_prod > up_down:
-                high = diag_right_prod
-            elif diag_left_prod > diag_right_prod and diag_left_prod > left_right and diag_left_prod > up_down:
-                high = diag_left_prod
-            elif left_right > diag_left_prod and left_right > diag_right_prod and left_right > up_down:
-                high = left_right
-            elif up_down > diag_left_prod and up_down > diag_right_prod and up_down > left_right:
-                high = up_down
-
+            high = max(diag_right_prod, max(left_right, up_down))
+            
             if high > best:
                 best = high
                 print(str(best))
+
+
+                
+
+    for row in range(0, len(grid) - 3):
+        for col in range(3, len(grid[row])):
+            diag_left_prod = grid[row + 3][col - 3] * grid[row + 2][col - 2] * grid[row + 1][col - 1] * grid[row][col]
+
+            if best < diag_left_prod:
+                best = diag_left_prod
+
+
+                       
 
 
     print(best)
