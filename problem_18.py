@@ -19,7 +19,7 @@ def solve():
     cols = 15
     high, val, lastIndex, highVal = 0, 0, 0, 0
 
-    for interation in range(0, cols):
+    for iteration in range(0, cols):
         for i in range(0, rows):
             for j in range(lastIndex - 1, lastIndex + 1):
                 if t[i][j] > highVal:
@@ -35,9 +35,6 @@ def solve():
 
 
     print(high)            
-
-
-
 
 
 if __name__ == "__main__":
